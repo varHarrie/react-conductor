@@ -1,0 +1,38 @@
+{
+  "name": "react-conductor",
+  "version": "0.0.1",
+  "description": "React static router library based on react-router.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/varHarrie/react-conductor.git"
+  },
+  "author": "varHarrie",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/varHarrie/react-conductor/issues"
+  },
+  "homepage": "https://github.com/varHarrie/react-conductor#readme",
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "eslint": "^4.0.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-react": "^7.1.0",
+    "prop-types": "^15.5.10",
+    "react": "15.x",
+    "react-dom": "15.x",
+    "react-router": "4.x",
+    "webpack": "^2.6.1"
+  },
+  "keywords":[
+    "react",
+    "router"
+  ]
+}
