@@ -1,29 +1,44 @@
 const path = require('path')
+const webpack = require('webpack')
 
 function resolve (p) {
   return path.resolve(__dirname, p)
 }
 
 module.exports = {
-  target: 'web',
-  entry: [resolve('src/index.js')],
+  entry: resolve('src/index.js'),
   output: {
+    filename: 'index.js',
     path: resolve('dist'),
-    filename: 'bundle.js',
+    publicPath: 'dist/',
     library: 'ReactConductor',
     libraryTarget: 'umd'
   },
-  resolve: {
-    extensions: ['.js', '.jsx'],
-    modules: ['node_modules']
-  },
   module: {
     rules: [{
-      test: /\.jsx?$/,
-      use: 'babel-loader',
-      include: [resolve('src')]
+      test: /\.tsx?$/,
+      include: resolve('src'),
+      exclude: /node_modules/,
+      loader: 'awesome-typescript-loader'
     }]
   },
+  resolve: {
+    extensions: ['.tsx','.ts', '.js', '.less']
+  },
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
+      beautify: false,
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true
+      },
+      compress: {
+        screw_ie8: true
+      },
+      comments: false
+    })
+  ],
   externals: {
     'react-router': {
       root: 'ReactRouter',
