@@ -2,7 +2,8 @@
   "name": "react-conductor",
   "version": "0.0.1",
   "description": "React static router library based on react-router.",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist && webpack --config webpack.config.js"
@@ -18,29 +19,30 @@
   },
   "homepage": "https://github.com/varHarrie/react-conductor#readme",
   "devDependencies": {
-    "@types/history": "^4.6.0",
-    "@types/prop-types": "^15.5.1",
-    "@types/query-string": "^5.0.0",
-    "@types/react": "^16.0.5",
-    "@types/react-dom": "^15.5.4",
-    "@types/react-router": "^4.0.15",
     "awesome-typescript-loader": "^3.2.3",
-    "prop-types": "^15.5.10",
     "react": "15.6.1",
-    "react-dom": "15.6.1",
-    "react-router": "4.2.0",
+    "rimraf": "^2.6.2",
     "tslint": "^5.7.0",
     "tslint-eslint-rules": "^4.1.1",
     "tslint-react": "^3.2.0",
-    "typescript": "^2.4.2",
-    "webpack": "^3.5.5"
+    "typescript": "^2.5.2",
+    "webpack": "^3.5.6"
   },
   "keywords": [
     "react",
     "router"
   ],
   "dependencies": {
+    "@types/history": "^4.6.0",
+    "@types/prop-types": "^15.5.1",
+    "@types/query-string": "^5.0.0",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "@types/react-router": "^4.0.15",
     "history": "^4.7.2",
-    "query-string": "^5.0.0"
+    "prop-types": "^15.5.10",
+    "query-string": "^5.0.0",
+    "react-dom": "15.6.1",
+    "react-router": "4.2.0"
   }
 }
