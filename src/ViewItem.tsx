@@ -11,13 +11,22 @@ export interface IViewItemProps extends RouteComponentProps<any> {
 export default class ViewItem extends React.Component<IViewItemProps> {
 
   static contextTypes = {
-    $__setMatchedRoute: PropTypes.func,
+    $route: PropTypes.any,
     $push: PropTypes.func,
-    $replace: PropTypes.func
+    $replace: PropTypes.func,
+    $isMatched: PropTypes.func,
+    $$setMatchedRoute: PropTypes.func
   }
 
   static childContextTypes = {
+    $children: PropTypes.any
+  }
 
+  getChildContext = () => {
+    const context = {
+      $children: this.props.route.children,
+    }
+    return context
   }
 
   componentWillMount () {
@@ -32,32 +41,20 @@ export default class ViewItem extends React.Component<IViewItemProps> {
   setMatchRoute = (route: Route, location: Location) => {
     const {pathname, search} = location
     const matchedRoute = new MatchedRoute(route, pathname, search)
-    this.context.$__setMatchedRoute(matchedRoute)
-  }
-
-  handlePush = (name: string, params?: any, query?: any) => {
-    console.log(name)
-  }
-
-  handleReplace = () => {
-    console.log(name)
-  }
-
-  handleIsMatched = () => {
-    return true
+    this.context.$$setMatchedRoute(matchedRoute)
   }
 
   render () {
     const {route} = this.props
+    const {$route, $push, $replace, $isMatched} = this.context
     const Component = route.component
-    const matchedRoute = this.context.$matchedRoute
 
     return (
       <Component
-        $route={matchedRoute}
-        $push={this.handlePush}
-        $replace={this.handleReplace}
-        $isMatched={this.handleIsMatched}/>
+        $route={$route}
+        $push={$push}
+        $replace={$replace}
+        $isMatched={$isMatched}/>
     )
   }
 }

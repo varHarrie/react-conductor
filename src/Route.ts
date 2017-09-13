@@ -84,5 +84,5 @@ function ensurePath (path: string = '') {
     ? ''
     : path[0] === '/'
     ? path
-    : '/' + 'path'
+    : '/' + path
 }

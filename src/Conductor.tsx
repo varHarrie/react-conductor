@@ -15,45 +15,47 @@ export interface IConductorProps {
   routes: IRouteConfig[]
 }
 
-export interface IConductorState {
-  matchedRoute: MatchedRoute
-}
-
-export default class Conductor extends React.Component<IConductorProps, IConductorState> {
+export default class Conductor extends React.Component<IConductorProps> {
   
   static childContextTypes = {
-    $routes: PropTypes.any,
-    $route: PropTypes.any,
+    $children: PropTypes.any,
     $push: PropTypes.any,
     $replace: PropTypes.any,
-    $__setMatchRoute: PropTypes.any
+    $route: PropTypes.any,
+    $$setMatchedRoute: PropTypes.any
   }
 
-  history: History
+  route: MatchedRoute | null
   routes: Route[]
   routeMap: IRouteMap
+  history: History
 
-  getChildContext = () => {
-    return {
-      $routes: this.routes,
-      $matchedRoute: this.state.matchedRoute,
-      $push: this.handlePush,
-      $replace: this.handleReplace,
-      $__setMatchedRoute: this.setMatchedRoute
-    }
-  }
+  constructor (props: IConductorProps) {
+    super(props)
 
-  componentWillMount () {
-    const {routes, mount, history} = this.props
+    const {routes, mount, history} = props
     const rs = parseRoutes(routes, mount)
 
     this.routes = rs.routes
     this.routeMap = rs.routeMap
     this.history = history || createBrowserHistory()
+
+    this.route = null
   }
 
-  setMatchedRoute = (matchedRoute: MatchedRoute) => {
-    this.setState({matchedRoute})
+  getChildContext = () => {
+    const context = {
+      $children: {default: this.routes},
+      $push: this.handlePush,
+      $replace: this.handleReplace,
+      $route: this.route,
+      $$setMatchedRoute: this.setMatchedRoute
+    }
+    return context
+  }
+
+  setMatchedRoute = (route: MatchedRoute) => {
+    this.route = route
   }
 
   matchRoute = (name: string, params: any, query: any) => {

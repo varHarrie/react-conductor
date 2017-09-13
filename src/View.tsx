@@ -2,7 +2,7 @@ import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import {Route as OriginalRoute, Switch} from 'react-router'
 import Route from './Route'
-import ViewItem from "./ViewItem";
+import ViewItem from './ViewItem'
 
 export interface IViewProps {
   name?: string
@@ -10,8 +10,8 @@ export interface IViewProps {
 
 export default class View extends React.Component<IViewProps> {
 
-  static contextType = {
-    $routes: PropTypes.any
+  static contextTypes = {
+    $children: PropTypes.any
   }
 
   context: {
